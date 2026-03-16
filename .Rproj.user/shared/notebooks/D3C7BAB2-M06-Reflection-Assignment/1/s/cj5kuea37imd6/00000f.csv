@@ -1,0 +1,30 @@
+"0","library(tidyverse)"
+"0",""
+"0","# Table 1: Our master list of students"
+"0","students <- tibble("
+"0","  student_id = c(101, 102, 103),"
+"0","  name = c(""Angelina"", ""McKenna"", ""Matthew"")"
+"0",")"
+"0",""
+"0","# Table 2: Those who actually turned in the assignment"
+"0","submissions <- tibble("
+"0","  student_id = c(101, 103),"
+"0","  status = c(""Submitted"", ""Submitted"")"
+"0",")"
+"0",""
+"0","# Performing the left join"
+"0","final_list <- left_join(students, submissions, by = ""student_id"")"
+"0",""
+"0","print(final_list)"
+"1","[38;5;246m# A tibble: 3 × 3[39m
+"
+"1","  student_id name     status   
+"
+"1","       [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<chr>[39m[23m    [3m[38;5;246m<chr>[39m[23m    
+"
+"1","[38;5;250m1[39m        101 Angelina Submitted
+"
+"1","[38;5;250m2[39m        102 McKenna  [31mNA[39m       
+"
+"1","[38;5;250m3[39m        103 Matthew  Submitted
+"

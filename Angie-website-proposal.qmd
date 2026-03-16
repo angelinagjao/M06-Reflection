@@ -1,0 +1,232 @@
+---
+title: "My First Revealjs Presentation Slide"
+subtitle: "Sample for portfolio website project required to be completed"
+author: "Angelina Jao"
+institute: "IBM 3202, Cal Poly Pomona"
+date: "`r Sys.Date()`"
+format:
+  revealjs:
+    theme: serif
+    width: 1600
+    height: 900
+    footer: "My Portfolio Website Proposal"
+    transition: slide
+    transition-speed: default
+    incremental: false
+    toc: true
+    toc-depth: 1
+    slide-number: true
+    scrollable: true
+    smaller: true
+    code-fold: false
+    code-overflow: wrap
+    number-sections: false
+    number-depth: 5
+    embed-resources: true
+    css: styles.css
+editor: visual
+execute:
+  echo: true
+  freeze: auto
+---
+
+# Introduction {background-color="#2c3e50"}
+
+## Who I Am
+
+::::: columns
+::: {.column width="60%"}
+-   **Name:** Angelina Jao
+-   **Major:** Business Administration - Marketing Management
+-   **Goal:** To build a professional portfolio website using R, Quarto & GitHub Pages
+
+> "Choose to be optimistic, it feels better" - Dali Lama
+:::
+
+::: {.column width="40%"}
+![](images/img%2022.png)
+:::
+:::::
+
+------------------------------------------------------------------------
+
+## My Website Plan
+
+::: incremental
+-   **Home Page** — Introduction and personal statement
+-   **Marketing Projects** — Data-driven case studies & visualizations
+-   **Dashboard** — Interactive data dashboard
+-   **RevealJS Presentation** — This slide deck, embedded!
+-   **Google Analytics** — Live traffic tracking
+:::
+
+# Home Page {background-color="#1a1a2e"}
+
+## Introduction of myself
+
+::: {.fragment .fade-in}
+### Personal Statement
+
+My name is Angelina Jao and I am currently a third year student at Cal Poly Pomona studying in Marketing Management. I am also a shift lead at Chick-Fil-A and my hobbies are listening to music, playing video games, and hanging out with my friends. I hope that the things that I am learning in this class, I can use this for my future jobs.
+:::
+
+::: {.fragment .fade-up}
+### Featured Work
+
+**Course:** MHR 3010
+
+A competitive and strategic analysis of JPMorgan Chase including SWOT, financial performance (2020–2024), and recommendations.
+
+[View Presentation](MHR%20-%20Team%20Report%20Presentation.pdf)
+:::
+
+::: {.fragment .fade-left}
+### Contact / Social Links
+
+<https://www.linkedin.com/in/angelina-g-jao/>
+
+<https://github.com/angelinagjao>
+:::
+
+# Marketing Projects {background-color="#16213e"}
+
+## Case Study Preview
+
+::: panel-tabset
+### Overview
+
+This visualization uses the built-in R `economics` dataset to explore
+U.S. consumer saving behavior over time, including:
+
+- Personal savings rate trends
+- Long-term consumer spending patterns
+- Economic shifts across major historical events
+
+### Sample Visualization
+
+```{r}
+#| label: fig-spending
+#| fig-cap: "U.S. Personal Savings Rate Over Time"
+#| fig-width: 8
+#| fig-height: 4
+#| echo: true
+
+library(ggplot2)
+
+ggplot(economics, aes(x = date, y = psavert)) +
+  geom_line(color = "#e94560", linewidth = 1) +
+  geom_smooth(color = "white", se = FALSE, linewidth = 0.5) +
+  theme_minimal(base_size = 14) +
+  labs(
+    x = "Year",
+    y = "Personal Savings Rate (%)",
+    title = "U.S. Personal Savings Rate (1967-2015)",
+    subtitle = "Source: ggplot2 economics dataset"
+  )
+```
+
+### Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| Time Period | 1967 - 2015 |
+| Peak Savings Rate | ~17% (early 1970s) |
+| Lowest Savings Rate | ~2% (mid 2000s) |
+| Dataset | Built-in R `economics` |
+:::
+
+# Dashboard {background-color="#0f3460"}
+
+## Dashboard Plan
+
+::::: columns
+::: {.column width="50%"}
+**Tools I'll use:**
+
+-   `flexdashboard` or `Quarto dashboard`
+-   `plotly` for interactive charts
+-   `DT` for searchable data tables
+-   Embedded in website as its own page
+:::
+
+::: {.column width="50%"}
+**What it will show:**
+
+-   Real-time or simulated KPIs
+-   Filterable marketing data
+-   Geographic visualizations
+:::
+:::::
+
+# RevealJS Presentation {background-color="#533483"}
+
+## What Makes RevealJS Powerful
+
+::: incremental
+-   Renders from plain text (`.qmd`) → no PowerPoint needed
+-   Can be published to GitHub Pages or Quarto Pub
+-   Speaker mode (`S` key) shows notes + timer
+:::
+
+# Google Analytics {background-color="#1b4332"}
+
+## Tracking My Portfolio
+
+::::: columns
+::: {.column width="50%"}
+**Learning with Google Demo Account**
+
+1.  I use the free GA4 Demo Account at [analytics.google.com](https://analytics.google.com)
+2.  I explored real traffic data from the **Google Merchandise Store**
+3.  Practiced reading key reports:
+    -   Acquisition (where visitors come from)
+    -   Engagement (what they do on site)
+    -   Retention (do they come back?)
+:::
+
+::: {.column width="50%"}
+**Steps to take when I launch my portfolio site:**
+
+1.  Create my own GA4 property
+2.  Get my **Measurement ID**
+3.  Add to `_quarto.yml`:
+
+``` yaml
+website:
+  google-analytics: "G-XXXXXXXXXX"
+```
+:::
+:::::
+
+# Publishing Plan {background-color="#2d6a4f"}
+
+## How I'll Publish
+
+::: incremental
+-   GitHub Pages
+-   Quarto Pub
+:::
+
+https://rpubs.com/agjao/1410504
+
+# Thank You {background-color="#2c3e50"}
+
+## Questions?
+
+::::: columns
+::: {.column width="60%"}
+**Angelina Jao**
+
+Business Administration - Marketing Management
+
+Cal Poly Pomona
+
+agjao\@cpp.edu\
+<https://www.linkedin.com/in/angelina-g-jao/> <https://github.com/angelinagjao>
+:::
+
+## References {.unnumbered}
+
+::: {#refs}
+:::
+:::::
