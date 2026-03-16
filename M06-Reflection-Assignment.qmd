@@ -1,0 +1,215 @@
+---
+title: "M06 Reflection Assignment"
+author: "Angelina Jao"
+date: today
+format:
+  html:
+    theme: cyborg
+    toc: true
+    toc-depth: 4
+    toc-expand: 3
+    toc-title: "Table of Contents"
+    number-sections: false
+    embed-resources: true
+    code-fold: true
+    code-tools: true
+    code-overflow: wrap
+    highlight-style: dracula
+    smooth-scroll: true
+execute:
+  echo: true
+  warning: false
+  message: false
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+# 1. Summarize what you learned about Tidyverse tricks presented in Step 1 by focusing on the new things you learned that were not dealt with in M05
+
+-   **crossing()**: It creates a table containing every possible combination of the vectors you provide. It is cleaner than the base R version because it returns a tibble, doesn't change strings to factors, and is perfect for "tidy simulations" where you need to test many different input parameters.
+-   **separate()**: This function is used to split one "messy" column into multiple new columns based on a separator (like a comma, space, or pipe). It is a massive time-saver for cleaning real-world data where multiple pieces of information are often crammed into a single cell.
+-   **extract()**: Similar to separate(), but more powerful because it uses regular expressions. It allows you to pull specific data out of a string using "capture groups" (parentheses). A great feature is the convert = TRUE argument, which automatically turns extracted text into numbers if it detects they are integers.
+-   **fct_lump()**: Part of the forcats package, this trick is used to clean up categorical data by collapsing all the "rare" levels of a factor into a single category called "Other". This is specifically useful before plotting, as it prevents a graph from being overwhelmed by dozens of tiny, insignificant categories.
+
+# 2. What do you think about David Robinson's impromptu screencast performance in Step 2? How much were you able to understand?
+
+Watching David Robinson [^1] work through a dataset he had never seen before was honestly pretty crazy.
+As someone who has only been using R for like 2 months now, I could follow his basic Tidyverse moves like filtering rows and grouping data to get totals, but he moves so fast it is hard to keep up.
+It feels like he has the entire library of commands memorized.
+He used pivot_longer to fix the data structure almost immediately, which is something that usually takes me ten minutes and three Google searches to figure out.
+One of the most helpful moments was when his code actually broke while he was trying to add country flags to his chart.
+When I get an error message I usually just stare at it and feel stuck, but he broke the problem down by testing small chunks of data until he found the specific row causing the crash.
+It turned out some country codes were uppercase and some were lowercase, and watching him work through that was a really good reminder of how messy real data can be.
+By the end he had built these complex faceted plots with flags and custom labels.
+I could not write that code from scratch yet, but I understood the logic behind what he was doing.
+He wanted to see which countries were shifting toward renewable energy and how places like Germany and the UK were driving most of the wind power growth.
+It showed me that R is not just about getting the syntax perfect but about using these tools to actually tell a story with data.
+It is a little overwhelming to see how much there is still to learn, but it is also encouraging to know that even people like him spend a good chunk of their time fixing small bugs and cleaning up messy data.
+
+[^1]: Robinson is known for his Tidy Tuesday screencasts on YouTube where he analyzes datasets live.
+
+# 3. In Step 3, you saw two videos, one showing initial data cleaning and the other showing further cleaning. Describe the two processes. What are the big differences between the two? How do the differences result in the differences in final sample size?
+
+## 3.1. Describing the process
+
+::: panel-tabset
+### Video 1
+
+-   **Variable Selection**: Removing columns that aren't needed for the specific analysis (e.g., system-generated timestamps, IP addresses, or metadata).
+-   **Renaming**: Changing cryptic column names (like Q1_1) into descriptive names (like brand_loyalty) to make the code easier to read.
+-   **Basic Filtering**: Removing respondents who did not give consent or those who clearly didn't start the survey (e.g., "In-Progress" responses that are 0% complete).
+-   **Recoding**: Converting character strings into factors or numbers into labeled categories so the statistical functions can process them.
+
+### Video 2
+
+-   **Speeders**: Removing respondents who finished the survey too quickly. If a survey takes 10 minutes on average and someone finished in 2 minutes, they likely didn't read the questions.
+-   **Straight-liners**: Filtering out people who gave the same answer for every question (e.g., selecting "Strongly Agree" for 20 questions in a row without looking).
+-   **Attention Checks**: Dropping respondents who failed "trap" questions (e.g., "Please select 'Somewhat Disagree' for this question").
+-   **Missingness**: Removing participants who skipped too many important questions, making their profile unusable for modeling.
+:::
+
+## 3.2. The Big Differences
+
+-   **The Goal**: Initial cleaning is about usability (can the computer read this?); further cleaning is about validity (is this data honest and accurate?).
+-   **The Method**: Initial cleaning uses objective rules (e.g., "remove column X"). Further cleaning uses statistical thresholds (e.g., "remove if duration \< 300 seconds").
+
+## 3.3. Impact on Sample Size
+
+-   **Initial Cleaning Sample Impact**: The sample size usually remains relatively high. You might only lose 5–10% of the data, primarily people who never actually took the survey or didn't consent.
+-   **Further Cleaning Sample Impact**: This is where the most significant drop occurs. In rigorous marketing research, it is common to lose 20% to 40% of the original sample during quality control. Because you are filtering for "good" data rather than just "any" data, the final sample size is much smaller, but the results are significantly more trustworthy.
+
+# 4. In Step 4, you learned how to create an Revealjs presentation. What's your impression of the Revealjs presentation? Describe its capabilities as you learned from the video. What are its strengths and weaknesses compared with PPT?
+
+RevealJS is honestly a lot more powerful than I expected.
+It has features like "Multiplex" which lets the presenter control slides on everyone else's screens, a Chalkboard tool for drawing on slides during a talk, and the ability to show or hide the code behind a chart.
+The vertical navigation style was also interesting since you can tuck extra slides under a main topic without cluttering the main flow.
+Compared to PowerPoint the biggest advantage is that the slides can update automatically when your data changes instead of having to manually fix everything.
+Speaker View is useful too since you get a private timer and notes while the audience only sees the slides.
+And since everything is just an HTML file you can share a link instead of attaching a file.
+The downside is the learning curve.
+You cannot just click and drag things like in PowerPoint, you have to write code to change the design which takes a lot more time for something simple.
+Exporting to PDF can also be frustrating since the layout does not always cooperate with browser print settings.
+
+# 5. In Step 5, you were asked to create a Revealjs presentation. Provide a link to the presentation you published on the web. Briefly describe what the presentation is about. What did you learn about the Revealjs presentation from the experience?
+
+## 5.1. Link
+
+[RevealJS Website](https://rpubs.com/agjao/1410504)
+
+## 5.2. What the presentation is about
+
+My RevealJS presentation is a proposal for my portfolio website that I plan to build using R, Quarto, and GitHub Pages.
+It walks through the five main pages I intend to include: a Home Page with my personal statement and featured work, a Marketing Projects section with data visualizations, a Dashboard, an embedded RevealJS presentation, and Google Analytics integration.
+I also included a competitive analysis of JPMorgan Chase from my MHR 3010 course as an example of featured work.
+
+## 5.3. What I learned about the Revealjs presentation from the experience
+
+-   Structure comes from headers: I learned that \# creates a section title slide and \## creates a regular slide, which is different from how PowerPoint works
+-   YAML controls everything: small changes in the header like theme: serif, transition: slide, and scrollable: true changed the whole look and feel without touching the slides themselves
+-   Fragments and incremental lists are how you control the pacing of your presentation: instead of animations in PowerPoint, you use {.fragment} or {.incremental}
+-   Columns need specific syntax: the ::::: columns and nested {.column width="60%"} took some getting used to
+-   File paths matter: I ran into a "not found" error with my PDF link because of spaces in the file name, and had to use %20 to fix it
+
+# 6. My advanced wrangling lecture in Step 6 introduced new concepts not covered in M05, such as joining relational databases. Pick three of them, describe when to use them, and give one coding example along with an output for each function. To clarify, you are expected to do literate programming by weaving your narratives with the code.
+
+## 6.1. left_join()
+
+> Use this when you don't want to lose any observations from your main data set but want to "enrich" it with extra details.
+
+```{r}
+library(tidyverse)
+
+# Table 1: Our master list of students
+students <- tibble(
+  student_id = c(101, 102, 103),
+  name = c("Angelina", "McKenna", "Matthew")
+)
+
+# Table 2: Those who actually turned in the assignment
+submissions <- tibble(
+  student_id = c(101, 103),
+  status = c("Submitted", "Submitted")
+)
+
+# Performing the left join
+final_list <- left_join(students, submissions, by = "student_id")
+
+print(final_list)
+```
+
+## 6.2. inner_join()
+
+> Use this when you are doing a specific analysis where you need complete data from both sides: like matching a list of "Lead Leads" with "Actual Sales" to see who converted
+
+```{r}
+# Table 1: Customers who received a 20% off coupon
+coupon_sent <- tibble(
+  user_id = c("A1", "B2", "C3"),
+  coupon = c("SAVE20", "SAVE20", "SAVE20")
+)
+
+# Table 2: Customers who actually made a purchase
+purchases <- tibble(
+  user_id = c("B2", "D4"),
+  amount = c(45.00, 120.00)
+)
+
+# We only want to see people who got a coupon AND bought something
+conversion_data <- inner_join(coupon_sent, purchases, by = "user_id")
+
+print(conversion_data)
+```
+
+## 6.3. anti_join()
+
+> Use it to find out who is missing, which IDs are broken, or which customers haven't been contacted yet.
+
+```{r}
+# Table 1: All invited guests for a networking event
+invited <- tibble(
+  guest_id = c(1, 2, 3, 4, 5),
+  name = c("Sara", "Bendu", "Mary", "John", "Chris")
+)
+
+# Table 2: People who checked in at the door
+checked_in <- tibble(
+  guest_id = c(1, 3, 5)
+)
+
+# Who didn't show up?
+no_shows <- anti_join(invited, checked_in, by = "guest_id")
+
+print(no_shows)
+```
+
+# 7. Data wrangling is like laying a foundation/basement for a building, while visualization is building a structure above the basement. Working in a basement is not a glamorous job at all. No one notices it; people will see what they can see above the ground and judge it, but without the hard work you did in the basement, the building will never stand well. Besides, wrangling is hard. You learned dplyr and tidyr in this module, but there is still more to learn in M07 and M08. What did you like the most about working with the tools you learned in this module? Elaborate on your point.
+
+What I liked most about working with the tools in this module was seeing how everything came together when I built my RevealJS presentation.
+The analogy of data wrangling being like a basement really resonated with me because making the presentation felt the same way.
+A lot of the work happened behind the scenes in the YAML header and file structure before anything even looked good on screen.
+For example, before I could see a single slide, I had to get the folder organized correctly, make sure styles.css was in the right place, and get the YAML header set up properly.
+Nobody sees that work when they look at the final slides, but if any of it was wrong, nothing would render.
+I ran into this firsthand when my PDF link kept saying "not found." It turned out to be spaces in the file name, which is exactly the kind of invisible, tedious problem that data wrangling deals with too.
+What I genuinely liked was that once the "basement" was solid, with the YAML configured, the files organized, and the CSS written, building the actual slides on top of it felt much more creative and fun.
+I could focus on content, fragments, columns, and transitions instead of troubleshooting.
+It made me appreciate that the unglamorous setup work is what makes the visible output possible, whether that is a clean data set or a polished presentation.
+
+::: callout-note
+Data wrangling may be invisible to the audience, but it is the reason the final output holds up.
+:::
+
+# 8. What seems to be the challenge, if any, for you when you try to master the wrangling tools? How may you be able to overcome the challenge? Let me share a little bit about my learning journey. The first time I saw David Robinson's performance, I was so impressed that I paused the video and typed his code. It took all day to type the code. That experience was very helpful, but I realized that I could shorten my learning curve by focusing on the basics. I couldn't understand a lot of the tools he was using. So, I tried to study those packages in Tidyverse and watch his video once in a while to check how much I improved. I found this method very effective. Thus, I believe that you will be ready to absorb online resources like YouTube much more effectively once you finish this program. Hope this experience helps you.
+
+The hardest part for me was not always the logic itself but the tiny details.
+Forgetting a comma, a closing parenthesis, or mixing up == and = can break everything.
+Tools like pivot_longer() and left_join() also took some getting used to.
+The concepts made sense watching it but actually getting the columns to line up correctly the first time almost never happened.
+It usually took a few rounds of trial and error before I stopped breaking the data set.
+Thinking in pipes was another adjustment.
+I knew where I was starting and where I wanted to end up, but the steps in the middle felt like a black box at first.
+What actually helped me was slowing down and running code one line at a time instead of writing a big block all at once.
+I would run the filter, check the output, then add the group_by, check again, and keep going from there.
+It is slower but you can catch exactly where things go wrong.
+
+# 9. Publish this report to a web page (preferably on GitHub Pages) and add the URL to your qmd file so that your HTML file will have the link to the website.
