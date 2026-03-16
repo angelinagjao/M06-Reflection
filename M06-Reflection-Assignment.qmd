@@ -213,3 +213,5 @@ I would run the filter, check the output, then add the group_by, check again, an
 It is slower but you can catch exactly where things go wrong.
 
 # 9. Publish this report to a web page (preferably on GitHub Pages) and add the URL to your qmd file so that your HTML file will have the link to the website.
+
+[Link to my Github website](https://github.com/angelinagjao/M06-Reflection)
